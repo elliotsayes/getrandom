@@ -232,7 +232,9 @@ pub use crate::error::Error;
 // The function MUST NOT ever write uninitialized bytes into `dest`,
 // regardless of what value it returns.
 cfg_if! {
-    if #[cfg(any(target_os = "haiku", target_os = "redox", target_os = "nto", target_os = "aix"))] {
+    if #[cfg(feature = "determinism")] {
+        #[path = "prng.rs"] mod imp;
+    } else if #[cfg(any(target_os = "haiku", target_os = "redox", target_os = "nto", target_os = "aix"))] {
         mod util_libc;
         #[path = "use_file.rs"] mod imp;
     } else if #[cfg(any(

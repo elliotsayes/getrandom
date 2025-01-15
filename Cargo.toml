@@ -30,6 +30,7 @@ js-sys = { version = "0.3", optional = true }
 wasm-bindgen-test = "0.3.18"
 
 [features]
+determinism = []
 # Implement std-only traits for getrandom::Error
 std = []
 # Disable `/dev/urandom` fallback for Linux and Android targets.
